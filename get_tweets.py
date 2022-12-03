@@ -12,9 +12,7 @@ def _create_url():
 
     usernames = f"usernames={username}"
 
-    user_fields = "user.fields=profile_image_url,url"
-
-    url = f"https://api.twitter.com/2/users/by?{usernames}&{user_fields}"
+    url = f"https://api.twitter.com/2/users/by?{usernames}"
 
     return url
 
@@ -36,18 +34,20 @@ def get_user_id():
     url = _create_url()
     json_res = _connect_to_endpoint(url)
     print(json.dumps(json_res, indent=4, ensure_ascii=False))
-    return json_res["data"][0]["id"]
 
+    ids = []
+    for num in range(len(json_res["data"])):
+        ids.append(json_res["data"][num]["id"])
+    return ids
 
 def create_url():
-
-    #expansions = "expansions=attachments.media_keys&media.fields=type,url,preview_image_url"
 
     expansions = "expansions=attachments.media_keys&media.fields=variants"
 
     ids = get_user_id()
 
-    url = f"https://api.twitter.com/2/users/{ids}/tweets?{expansions}"
+    for id in ids:
+        url = f"https://api.twitter.com/2/users/{id}/tweets?{expansions}"
 
     return url
 
