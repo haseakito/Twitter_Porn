@@ -1,0 +1,73 @@
+body {
+  margin: 1%;
+  background-color: black;
+  color: white;
+}
+
+header {
+  position: fixed;
+  width: 100vw;
+  background-color: rgb(64, 64, 132);
+  padding: 1vh 0;
+  z-index: 100;
+}
+
+header a {
+  text-decoration: none;
+}
+
+h1 {
+  font-size: 2rem;
+  color: white;
+  margin-left: 2%;
+  padding-left: 8%;
+  background-image: url(./icon/twitterPornIcon.png);
+  background-position: left;
+  background-size: 3rem 3rem;
+  background-repeat: no-repeat;
+}
+
+h1 span {
+  color: orange;
+}
+
+.contents {
+  padding-top: 110px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+#top {
+  display: inline-block;
+  text-align: center;
+  margin-top: 20px;
+  border: inset 2px orange;
+  padding: 5px 10px;
+}
+
+#top .main {
+  font-size: 2rem;
+}
+
+#top .sub {
+  font-size: 1.5rem;
+}
+
+.content {
+  margin: 20px;
+}
+
+video {
+  padding-bottom: 20px;
+  width: auto;
+  height: 60vh;
+}
+
+footer {
+  text-align: center;
+  font-size: 2rem;
+}
+
+footer p {
+  font-size: 1rem;
+}

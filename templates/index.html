@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="This site is Twitter Porn site." />
+  <link rel="shortcut icon" type="image/png" href="../static/icon/twitterPornIcon.png"/>
+  <link rel="stylesheet" type="text/css" href="../static/style.css">
+  <title>Twitter Porn</title>
+</head>
+<body>
+  <header>
+    <a href="#top"><h1 class="title">Twitter<span> Porn</span></h1></a>
+  </header>
+  <div class="contents">
+    <div id="top">
+      <h2 class="main">Welcome to sex site.</h2>
+      <p class="sub">This site exists simply to enjoy sex.</p>
+    </div>
+    <div class="content">
+      {% if urls == [] %}
+        <p>No video has been released yet!</p>
+      {% else %}
+        {% for url in urls %}
+          <video src={{ url }} controls></video>
+        {% endfor %}
+      {% endif %}
+    </div>
+  </div>
+  <footer>
+    Thank you.
+    <p>&copy; Akito 2022</p>
+  </footer>
+  <script type="text/javascript" src="../static/js/main.js"></script>
+</body>
+</html>
