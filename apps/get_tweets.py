@@ -106,6 +106,9 @@ def get_tweets():
                 db.session.commit()
             except:
                 print("duplicate items found!")
+                db.session.rollback()
+            finally:
+                db.session.close()
 
 if __name__ == '__main__':
     get_tweets()

@@ -14,7 +14,12 @@ crud = Blueprint(
 @crud.route("/")
 def index():
 
-    urls = db.session.query(URLs).all()
+    try:
+        get_tweets()
+    except:
+        db.session.rollback()
+    finally:
+        urls = db.session.query(URLs).all()
 
     return render_template(
         'crud/index.html',
