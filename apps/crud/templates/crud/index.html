@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="This site is Twitter Porn site." />
   <link rel="shortcut icon" type="image/png" href="../static/icon/twitterPornIcon.png"/>
-  <link rel="stylesheet" type="text/css" href="../static/style.css">
+  <link rel="stylesheet" type="text/css" href="{{url_for('crud.static', filename='style.css')}}">
   <title>Twitter Porn</title>
 </head>
 <body>
@@ -22,7 +22,7 @@
         <p>No video has been released yet!</p>
       {% else %}
         {% for url in urls %}
-          <video src={{ url }} controls></video>
+          <video src={{ url.url }} controls></video>
         {% endfor %}
       {% endif %}
     </div>
