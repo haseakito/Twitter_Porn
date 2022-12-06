@@ -1,2 +1,3 @@
 # hide .env file
 .env
+config.py

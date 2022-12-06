@@ -10,10 +10,7 @@ db = SQLAlchemy()
 def create_app():
     app = Flask(__name__, static_folder=None)
 
-    app.config.from_mapping(
-        SQLALCHEMY_DATABASE_URI='mysql://root:kyuri0515@localhost/twitter_porn',
-        SQLALCHEMY_TRACK_MODIFICATION=False
-    )
+    app.config.from_envvar("APPLICATION_SETTINGS")
 
     db.init_app(app)
     Migrate(app, db)
