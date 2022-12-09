@@ -1,5 +1,4 @@
-from apps.app import db
-import json
+import random
 import os
 
 from apps.crud.models import URLs
@@ -10,14 +9,13 @@ from dotenv import load_dotenv
 load_dotenv()
 bearer_token = os.getenv("BEARER_TOKEN")
 
-
 def get_accounts(as_list=False):
-    if as_list == True:
-        accounts = os.getenv("ACCOUNTS").split(',')
-    else:
-        accounts = os.getenv("ACCOUNTS")
+    accounts = os.getenv("ACCOUNTS").split(',')
+    random_accounts = random.sample(accounts, 3)
+    if as_list == False:
+        random_accounts = ",".join(random_accounts)
+    return random_accounts
 
-    return accounts
 def _create_urls():
     accounts = get_accounts()
 
@@ -44,7 +42,7 @@ def _connect_to_endpoint(url):
 def get_user_id():
     url = _create_urls()
     json_res = _connect_to_endpoint(url)
-    print(json.dumps(json_res, indent=4, ensure_ascii=False))
+    #print(json.dumps(json_res, indent=4, ensure_ascii=False))
 
     ids = []
     for num in range(len(json_res["data"])):
@@ -86,29 +84,26 @@ def get_tweets():
     urls = create_urls()
     results = connect_to_endpoint(urls)
 
+    video_urls = []
     for index, json_res in enumerate(results):
-        print(json.dumps(json_res, indent=4, ensure_ascii=False))
-
         for num in range(len(json_res["includes"]["media"])):
-            idx = 0
-            while idx < len(json_res["includes"]["media"][num]["variants"]):
-                if json_res["includes"]["media"][num]["variants"][idx]["content_type"] == "video/mp4":
-                    break
-                idx += 1
+            if json_res["includes"]["media"][num]["type"] == "video":
+                idx = 0
+                while idx < len(json_res["includes"]["media"][num]["variants"]):
+                    if json_res["includes"]["media"][num]["variants"][idx]["content_type"] == "video/mp4":
+                        break
+                    idx += 1
 
-            url = URLs(
-                name=get_accounts(as_list=True)[index],
-                url=json_res["includes"]["media"][num]["variants"][idx]["url"]
-            )
+                #video_urls.append({"name" : get_accounts(as_list=True)[index],
+                #                   "url" : json_res["includes"]["media"][num]["variants"][idx]["url"]})
 
-            try:
-                db.session.add(url)
-                db.session.commit()
-            except:
-                print("duplicate items found!")
-                db.session.rollback()
-            finally:
-                db.session.close()
+                url = URLs(
+                    name=get_accounts(as_list=True)[index],
+                    url=json_res["includes"]["media"][num]["variants"][idx]["url"]
+                )
+                video_urls.append(url)
+
+    return video_urls
 
 if __name__ == '__main__':
-    get_tweets()
+    print(get_tweets())

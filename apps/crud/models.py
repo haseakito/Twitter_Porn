@@ -3,8 +3,8 @@ from datetime import datetime
 
 class URLs(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(200), nullable=False),
-    url = db.Column(db.String(200), nullable=False, unique=True)
+    name = db.Column(db.String(200), nullable=False)
+    url = db.Column(db.String(200), unique=True)
     created_at = db.Column(db.DateTime, default=datetime.now)
 
     # Create A String
