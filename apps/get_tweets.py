@@ -42,7 +42,6 @@ def _connect_to_endpoint(url):
 def get_user_id():
     url = _create_urls()
     json_res = _connect_to_endpoint(url)
-    #print(json.dumps(json_res, indent=4, ensure_ascii=False))
 
     ids = []
     for num in range(len(json_res["data"])):
@@ -93,9 +92,6 @@ def get_tweets():
                     if json_res["includes"]["media"][num]["variants"][idx]["content_type"] == "video/mp4":
                         break
                     idx += 1
-
-                #video_urls.append({"name" : get_accounts(as_list=True)[index],
-                #                   "url" : json_res["includes"]["media"][num]["variants"][idx]["url"]})
 
                 url = URLs(
                     name=get_accounts(as_list=True)[index],
