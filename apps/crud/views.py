@@ -3,7 +3,6 @@ from apps.app import db
 from apps.get_tweets import get_tweets
 from apps.crud.models import URLs
 
-from sqlalchemy.dialects.mysql import insert
 
 crud = Blueprint(
     "crud",
