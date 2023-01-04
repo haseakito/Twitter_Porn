@@ -31,6 +31,11 @@ h1 span {
   color: orange;
 }
 
+.content {
+  text-align: center;
+  margin: 0 auto;
+}
+
 .contents {
   padding-top: 110px;
   margin: 0 auto;
@@ -55,6 +60,10 @@ h1 span {
 
 .content {
   margin: 20px;
+  display: flex;
+  flex-direction: column;
+  width: 80vw;
+  margin: 0 auto;
 }
 
 video {
@@ -70,4 +79,20 @@ footer {
 
 footer p {
   font-size: 1rem;
+}
+
+.pagination-page-info {
+  padding: .6em;
+  padding-left: 0;
+  width: 40em;
+  margin: .5em;
+  margin-left: 0;
+  font-size: 12px;
+}
+.pagination-page-info b {
+  color: black;
+  background: #6aa6ed;
+  padding-left: 2px;
+  padding: .1em .25em;
+  font-size: 150%;
 }
